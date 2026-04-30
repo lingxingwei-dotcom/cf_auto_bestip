@@ -17,12 +17,13 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install axios
+        # 修改了这里：不让它自己找菜单，直接让它装 axios
+        run: npm install axios 
 
       - name: Run sync script
         env:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
-          CF_DOMAIN: ${{ secrets.CF_SUB_DOMAIN }} # 修正：这里对应脚本要求的 CF_DOMAIN
+          CF_DOMAIN: ${{ secrets.CF_SUB_DOMAIN }}
         run: node cf_dns_sync.js
