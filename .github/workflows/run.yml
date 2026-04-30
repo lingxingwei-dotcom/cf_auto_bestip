@@ -1,9 +1,10 @@
 name: Cloudflare IP 自动同步
 
 on:
-  workflow_dispatch: # 手动触发
+  workflow_dispatch: # 支持手动触发
   schedule:
-    - cron: '0 1,13 * * *' # 北京时间 9:00 和 21:00 自动运行
+    # 每小时的第 15 分钟自动运行 (避开整点高峰)
+    - cron: '15 * * * *'
 
 jobs:
   build:
@@ -25,7 +26,7 @@ jobs:
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
         run: |
-          # 👇 这里的 DOMAINS 已经包含了你截图里的四个域名
+          # 这里是你那 4 个需要同步的子域名
           DOMAINS="hk.stellanling.top uswest.stellanling.top defd.stellanling.top moonsg.stellanling.top"
           
           for domain in $DOMAINS; do
