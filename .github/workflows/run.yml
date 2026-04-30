@@ -17,8 +17,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install axios # 直接安装脚本需要的通讯库
+        run: npm install axios
 
       - name: Run sync script
         env:
