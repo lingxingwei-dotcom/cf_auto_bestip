@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 # 更新到 v4 更稳
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4 # 修正了这里：之前误写成了 checkout
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
